@@ -94,6 +94,7 @@ public class WordUtil {
                                 Object value = entry.getValue();
                                 if (value instanceof String) {//文本替换
                                     text = text.replace(key, value.toString());
+
                                 } else if (value instanceof Map) {//图片替换
                                     text = text.replace(key, "");
                                     Map pic = (Map) value;
@@ -103,10 +104,7 @@ public class WordUtil {
                                     byte[] byteArray = (byte[]) pic.get("content");
                                     ByteArrayInputStream byteInputStream = new ByteArrayInputStream(byteArray);
                                     try {
-                                        //int ind = doc.addPicture(byteInputStream, picType);
                                         String ind = doc.addPictureData(byteInputStream,picType);
-                                        System.out.println(ind + "------------");
-
                                         doc.createPicture(0, width, height, paragraph);
                                     } catch (Exception e) {
                                         e.printStackTrace();
