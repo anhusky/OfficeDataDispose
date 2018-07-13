@@ -127,8 +127,8 @@ public class AppTest {
 
         //图片标记，路径，宽高
         Map<String, Object> header = new HashMap<String, Object>();
-        header.put("width", 150);
-        header.put("height", 150);
+        header.put("width", 300);
+        header.put("height", 400);
         header.put("type", "jpg");
         header.put("content", WordUtil.inputStream2ByteArray(new FileInputStream(path + "/mm2.jpg"), true));
         param.put("${header}", header);
