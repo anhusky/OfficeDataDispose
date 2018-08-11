@@ -343,7 +343,7 @@ public class WordReplaceTest {
         String path = this.getClass().getResource("/mm2.jpg").getPath();
         path = path.substring(0, path.lastIndexOf("/") + 1);
         //原文件
-        CustomXWPFDocument doc = WordUtil.generateWord(map, path + "/1. 加盟驾校自然情况调研-模板.docx");
+        CustomXWPFDocument doc = WordUtil.generateWord(map, path + "/templateLast.docx");
         //输出文件
         FileOutputStream fopts = new FileOutputStream(path + "/outFile.docx");
         doc.write(fopts);
