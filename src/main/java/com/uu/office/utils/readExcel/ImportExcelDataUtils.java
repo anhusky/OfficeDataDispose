@@ -24,11 +24,11 @@ import java.util.List;
  *
  * </pre>
  */
-public class ExportExcelDataUtils {
+public class ImportExcelDataUtils {
     private POIFSFileSystem fs;
     private HSSFWorkbook wb;
 
-    private static ExportExcelDataUtils exportExcelDataUtils = null;
+    private static ImportExcelDataUtils exportExcelDataUtils = null;
 
     //读取文件流
     public HSSFWorkbook readInputStreanAndToWorkbook(InputStream is) throws IOException {
@@ -39,7 +39,7 @@ public class ExportExcelDataUtils {
 
     public static HSSFWorkbook getInstanceForHSSFWorkbook(InputStream is) throws IOException {
         if (exportExcelDataUtils == null) {
-            exportExcelDataUtils = new ExportExcelDataUtils();
+            exportExcelDataUtils = new ImportExcelDataUtils();
         }
         return exportExcelDataUtils.readInputStreanAndToWorkbook(is);
     }

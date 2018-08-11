@@ -3,10 +3,11 @@ package com.uu.office.utils.readExcel;
 import com.uu.office.entity.ImportWzInfo;
 import com.uu.office.entity.ImportWzInfoBase;
 import com.uu.office.entity.User;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.util.HSSFColor;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.List;
  * @author liupenghao
  * @create 2018-07-19 下午5:33
  **/
-public class ExportExcelDataServiceImpl {
+public class ImportExcelDateServiceImpl {
 
     /**
      * 读取excel 标题
@@ -50,7 +51,7 @@ public class ExportExcelDataServiceImpl {
      * @param rowIndex
      * @return
      */
-    public static List<User> readExcelContentToUser(HSSFWorkbook wk, int sheetIndex, int rowIndex) {
+    public static List<User> readExcelContentToUser(HSSFWorkbook wk, int sheetIndex, int rowIndex) throws IOException {
         HSSFSheet sheet = wk.getSheetAt(sheetIndex);
         // 得到总行数
         int rowNum = sheet.getLastRowNum();
@@ -58,15 +59,46 @@ public class ExportExcelDataServiceImpl {
 
         for (int i = 1; i < rowNum + 1; i++) {
             HSSFRow row = sheet.getRow(i);
-            if (ExportExcelDataUtils.isBlankRow(row)) continue;
+            if (ImportExcelDataUtils.isBlankRow(row)) continue;
             User user = new User();
-            user.setName(ExportExcelDataUtils.cell2Str(row.getCell(0)));
-            user.setAge(Integer.parseInt(ExportExcelDataUtils.cell2Str(row.getCell(1))));
-            user.setSex(Integer.parseInt(ExportExcelDataUtils.cell2Str(row.getCell(2))));
-            user.setBirthday(ExportExcelDataUtils.cell2Str(row.getCell(3)));
 
+            user.setName(ImportExcelDataUtils.cell2Str(row.getCell(0)));
+            user.setAge(Integer.parseInt(ImportExcelDataUtils.cell2Str(row.getCell(1))));
+            user.setSex(Integer.parseInt(ImportExcelDataUtils.cell2Str(row.getCell(2))));
+            user.setBirthday(ImportExcelDataUtils.cell2Str(row.getCell(3)));
             list.add(user);
+
+
+            // 设置格式
+            HSSFCell cell = row.getCell(1);
+            HSSFCellStyle cellStyle = cell.getCellStyle();
+            cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
+
+            HSSFFont font = wk.createFont();
+            font.setColor(HSSFColor.RED.index);//HSSFColor.VIOLET.index //字体颜色
+            font.setFontHeightInPoints((short)12);
+            font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);         //字体增粗
+            //把字体应用到当前的样式
+            cellStyle.setFont(font);
+
+            HSSFCell cell2 = row.getCell(2);
+            HSSFCellStyle cellStyle2 = cell2.getCellStyle();
+            cellStyle2.setFillForegroundColor(HSSFColor.BLUE.index);
+
+            HSSFFont font2 = wk.createFont();
+            font2.setColor(HSSFColor.YELLOW.index);//HSSFColor.VIOLET.index //字体颜色
+            font2.setFontHeightInPoints((short)12);
+            font2.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);         //字体增粗
+            //把字体应用到当前的样式
+            cellStyle2.setFont(font2);
+
+            //System.out.println("------");
+
         }
+
+
+        wk.write(new FileOutputStream("/resource/outFile.xls"));
+
         return list;
     }
 
@@ -121,7 +153,7 @@ public class ExportExcelDataServiceImpl {
                 }
 
                 String unit = dateRow.getCell(2).getStringCellValue();
-                Integer count = Integer.parseInt(ExportExcelDataUtils.cell2Str (dateRow.getCell(3)));
+                Integer count = Integer.parseInt(ImportExcelDataUtils.cell2Str(dateRow.getCell(3)));
                 String peoples = dateRow.getCell(4).getStringCellValue();
                 String remark = dateRow.getCell(5).getStringCellValue();
 

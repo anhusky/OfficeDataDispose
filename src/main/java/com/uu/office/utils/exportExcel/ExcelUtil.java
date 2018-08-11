@@ -6,6 +6,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.util.CellRangeAddress;
 import org.apache.poi.hssf.util.HSSFCellUtil;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 
 import java.math.BigDecimal;
@@ -21,10 +22,10 @@ public class ExcelUtil {
     /**
      * 生成表头
      *
-     * @param workbook工作表
-     * @param sheet工作表的sheet
-     * @param cellStyle样式
-     * @param heads表头数据
+     * @param workbook 工作表
+     * @param sheet 工作表的sheet
+     * @param cellStyle 样式
+     * @param heads 表头数据
      * @return
      */
     public static void toHead(Workbook workbook, Sheet sheet, CellStyle cellStyle, List<String[]> headList, boolean isauto) {
@@ -76,10 +77,10 @@ public class ExcelUtil {
     /**
      * 生成一行数据
      *
-     * @param workbook工作表
-     * @param sheet工作表的sheet
-     * @param cellStyle样式
-     * @param list行数据
+     * @param workbook 工作表
+     * @param sheet 工作表的sheet
+     * @param cellStyle 样式
+     * @param list 行数据
      * @return
      */
     public static void toRow(Workbook workbook, Sheet sheet, CellStyle cellStyle, List<Object> list, boolean isauto) {
@@ -143,11 +144,11 @@ public class ExcelUtil {
     /**
      * 合并行的方法
      *
-     * @param columns需要合并行的列集合
-     * @param sheet工作表的当前sheet
-     * @param cellStyle样式
-     * @param stateLine开始行
-     * @param endLine结束行
+     * @param columns 需要合并行的列集合
+     * @param sheet 工作表的当前sheet
+     * @param cellStyle 样式
+     * @param stateLine 开始行
+     * @param endLine 结束行
      */
     public static void mergedRegionRow(List<Integer> columns, Sheet sheet, CellStyle cellStyle, int stateLine, int endLine) {
         for (int i = 0; i < columns.size(); i++) {
@@ -167,10 +168,10 @@ public class ExcelUtil {
     /**
      * 合并列的方法
      *
-     * @param lines需要合并列的行集合
-     * @param sheet工作表的当前sheet
-     * @param cellStyle样式
-     * @param colsMap行对应的列集合
+     * @param lines 需要合并列的行集合
+     * @param sheet 工作表的当前sheet
+     * @param cellStyle 样式
+     * @param colsMap 行对应的列集合
      */
     public static void mergedRegionColumns(List<Integer> lines, Sheet sheet, CellStyle cellStyle, Map<Integer, List<Integer>> colsMap) {
         for (int i = 0; i < lines.size(); i++) {
@@ -246,12 +247,12 @@ public class ExcelUtil {
     /**
      * 按照给定的开始行到结束行，替换指定列的值
      *
-     * @param workbook工作表
-     * @param sheet工作sheet页面
-     * @param column需要转换的列序号从0开始
-     * @param startLine需要转换的开始行
-     * @param endLine需要转换的结束行
-     * @param replaceData转换的键值对
+     * @param workbook 工作表
+     * @param sheet 工作sheet页面
+     * @param column 需要转换的列序号从0开始
+     * @param startLine 需要转换的开始行
+     * @param endLine 需要转换的结束行
+     * @param replaceData 转换的键值对
      */
     public static void replaceWorkBook(Workbook workbook, Sheet sheet, int column, int startLine, int endLine, Map<String, String> replaceData) {
         for (int i = startLine; i <= endLine; i++) {
@@ -270,9 +271,9 @@ public class ExcelUtil {
     /**
      * 按照给定的开始行到结束行，替换指定列的值
      *
-     * @param workbook工作表
-     * @param column需要转换的列序号从0开始
-     * @param replaceData转换的键值对
+     * @param workbook 工作表
+     * @param column 需要转换的列序号从0开始
+     * @param replaceData 转换的键值对
      */
     public static void replaceWorkBook(Workbook workbook, int column, Map<String, String> replaceData) {
         Sheet sheet = workbook.getSheetAt(0);
@@ -282,9 +283,8 @@ public class ExcelUtil {
     /**
      * 按照给定的开始行，替换指定列的值
      *
-     * @param workbook工作表
-     * @param startLine需要转换的开始行
-     * @param replaceMap转换的键值对
+     * @param workbook 工作表
+     * @param replaceMap 转换的键值对
      */
     public static void replaceWorkBook(Workbook workbook, Map<Integer, Map<String, String>> replaceMap) {
         Sheet sheet = workbook.getSheetAt(0);
@@ -298,9 +298,8 @@ public class ExcelUtil {
     /**
      * 按照给定的开始行，替换指定列的值
      *
-     * @param workbook工作表
-     * @param startLine需要转换的开始行
-     * @param replaceMap转换的键值对
+     * @param workbook 工作表
+     * @param replaceMap 转换的键值对
      */
     public static void replaceWorkBook(Workbook workbook, Sheet sheet, Map<Integer, Map<String, String>> replaceMap) {
         Set<Integer> columns = replaceMap.keySet();
@@ -313,9 +312,9 @@ public class ExcelUtil {
     /**
      * 按照给定的开始行到结束行，替换指定列的值
      *
-     * @param workbook工作表
-     * @param column需要转换的列序号从0开始
-     * @param replaceData转换的键值对
+     * @param workbook 工作表
+     * @param column 需要转换的列序号从0开始
+     * @param replaceData 转换的键值对
      */
     public static void replaceWorkBook(Workbook workbook, Sheet sheet, int column, Map<String, String> replaceData) {
         replaceWorkBook(workbook, sheet, column, 0, sheet.getLastRowNum(), replaceData);
@@ -368,4 +367,5 @@ public class ExcelUtil {
         headerBorder.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
         return headerBorder;
     }
+
 }
