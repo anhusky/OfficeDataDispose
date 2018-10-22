@@ -15,8 +15,8 @@
         |-- template.xls
     test       测试类目录
         |-- com.uu.office
-          |-- easypoi           测试类，用于测试，本工程的项目入口函数均在此
-          |-- poi               原生poi 操作
+          |-- easypoi           easy-poi操作测试
+          |-- poi               原生poi 操作测试
 
 #### 2. 适用范围
 > 用于java操作word、excel（采用的jar包是POI） 。
