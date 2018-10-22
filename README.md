@@ -15,8 +15,8 @@
         |-- template.xls
     test       测试类目录
         |-- com.uu.office
-          |-- AppTest           测试类，用于测试，本工程的项目入口函数均在此
-
+          |-- easypoi           测试类，用于测试，本工程的项目入口函数均在此
+          |-- poi               原生poi 操作
 
 #### 2. 适用范围
 > 用于java操作word、excel（采用的jar包是POI） 。
@@ -25,6 +25,9 @@
     运行结果在target 目录（idea环境下）
 ![image](http://ws4.sinaimg.cn/mw690/005AQjvJly1fu4pg1oz51j30h20e83zi.jpg)
 
-#### 4. 注意
+#### 4.新增easy-poi 操作类生成表格
+    
+
+#### 5. 注意
 > 如果本demo 不能解决你的问题，请尝试用FreeMark试试
 
